@@ -1,0 +1,1 @@
+selenide-allure-junit-gradle
