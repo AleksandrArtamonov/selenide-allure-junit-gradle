@@ -1,0 +1,5 @@
+<aspectj>
+    <aspects>
+        <aspect name="com.core.listeners.CustomAspect"/>
+    </aspects>
+</aspectj>

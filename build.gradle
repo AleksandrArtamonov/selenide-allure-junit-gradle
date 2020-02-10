@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.8.1"
+    id 'idea'
+    id 'groovy'
+}
+defaultTasks 'clean', 'test'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+allure {
+    autoconfigure = true
+    aspectjweaver = true
+    aspectjVersion = '1.9.4'
+    version = '2.10.0'
+}
+
+configurations {
+    agent
+}
+
+dependencies {
+    agent 'org.aspectj:aspectjweaver:1.9.4'
+    implementation('org.junit.jupiter:junit-jupiter:5.5.2')
+    compile 'org.hamcrest:hamcrest-all:1.3'
+    implementation('io.qameta.allure:allure-selenide:2.13.0')
+    runtimeOnly('io.qameta.allure:allure-junit5:2.13.0')
+    compile 'com.codeborne:selenide:5.5.0'
+    compile 'org.aspectj:aspectjtools:1.9.4'
+    compile 'org.slf4j:slf4j-nop:1.7.25'
+    implementation 'org.tinylog:tinylog-api:2.0.0-M4'
+    implementation 'org.tinylog:tinylog-impl:2.0.0-M4'
+}
+
+test.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    if (project.hasProperty("HubUrl")) {
+        systemProperties['selenide.remote'] = HubUrl
+    }
+    if (project.hasProperty("Headless")) {
+        systemProperties['selenide.headless'] = Headless
+    }
+    if (project.hasProperty("Browser")) {
+        systemProperties['selenide.browser'] = Browser
+    }
+}
+
