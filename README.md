@@ -22,4 +22,4 @@ gradlew allureReport
 
 
 ### To see a report:
-open http://localhost:63342/ReportAndLoggingDemo/build/reports/allure-report/index.html in your browser
+open index.html in report directory (you can find report directory in results of task allureReport)
