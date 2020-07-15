@@ -1,9 +1,10 @@
-# Selenide + Allure 2 + JUnit 5 + Gradle example
+# Selenide + Allure 2 + JUnit 5 + Gradle example 
+# Main target logging information from test 
 
 ### Features
-- Logging without @Step annotation
-- Adding console log in allure attachment
-- Adding selenide methods in allure steps
+- Using Allure without @Step annotation (can skip @Step annotation for methods, which we want to see in report)
+- Adding console log in Allure report in test attachment
+- Adding selenide methods in Allure report in test steps
 
 ### To run tests and generate Allure report:
 ```sh
